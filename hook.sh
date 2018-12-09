@@ -6,5 +6,9 @@
 # the following command:
 # > :set status_display_program=/PATH/TO/SCRIPT
 
+# Define where to store the FIFO
+[[ -z "$XDG_RUNTIME_DIR" ]] && XDG_RUNTIME_DIR="/tmp"
+fifo="$XDG_RUNTIME_DIR/powerstatus10k/fifos/cmus"
+
 # Pipe arguments to the Powerstatus10k FIFO.
-printf "%s\n" "$*" > "/tmp/powerstatus_segment_cmus" &
+printf "%s\\n" "$*" > "$fifo" &
